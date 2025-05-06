@@ -1,0 +1,34 @@
+# dependencies
+/node_modules/
+
+# production build
+/dist/
+
+# local env files
+.env
+.env.local
+.env.*.local
+
+# Vite cache
+/.vite
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# editor settings
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
