@@ -2,6 +2,7 @@ const express = require("express")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const User = require("../models/Users")
+const Rooms = require("../models/Rooms")
 const dotenv = require("dotenv")
 const authMiddelware = require("../middleware/authMiddleware")
 const router = express.Router()
@@ -61,5 +62,36 @@ router.post("/add-group", async(request, response) => {
 router.get("/me", authMiddelware, (request, response) => {
     response.json({user: request.user})
 })
+
+router.post("/checkRoom", async(request, response) => {
+    const {room} = request.body
+    try{
+        const isRoom = await Rooms.findOne({roomId: room})
+        if(isRoom) return response.status(201).json({msg:"Room found"})
+        return response.status(400).json({msg: "No room found"})
+
+    }
+    catch(error){
+        response.status(500).json({msg: error.message})
+    }
+})
+
+
+router.post("/addRoom", async(request, response) => {
+    const {room} = request.body
+
+    try{
+        const isPresent = await Rooms.findOne({roomId: room})
+        if (isPresent) return response.status(201).json({msg: "Room already exists"})
+            
+        const newRoom = new Rooms({roomId: room, time: new Date()})
+        await newRoom.save()
+        return response.status(201).json({msg: "Room created and added to db"})
+    }
+    catch(error){
+        response.status(500).json({msg: error.message})
+    }
+})
+
 
 module.exports = router

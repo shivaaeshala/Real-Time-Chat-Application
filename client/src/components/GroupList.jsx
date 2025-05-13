@@ -1,6 +1,7 @@
 import React from "react"
 import { useNavigate, Link } from "react-router-dom"
-import {socket} from "../socket"
+import { socket } from "../socket"
+import Header from "./Header"
 
 function GroupList({ user, setCurrentRoom }) {
   const navigate = useNavigate()
@@ -14,25 +15,31 @@ function GroupList({ user, setCurrentRoom }) {
   if (!user) return <p>Loading user...</p>;
 
   return (
-    <div>
-      <h2>Welcome, {user.username}</h2>
-      <h3>Your Groups:</h3>
-      <ul>
-        {Object.entries(user.groups).map(([roomId, roomName]) => (
-          <li key={roomId}>
-            <button onClick={() => handleJoin(roomId)}>
-              Join {roomName} ({roomId})
-            </button>
-          </li>
-        ))}
-      </ul>
-      <div>
-        <h3>Join a group</h3>
-        <Link to="/create">
-          <h4>Create group</h4>
-        </Link>
+    <>
+      <Header />
+      <div className="groups flex flex-col justify-start max-w-2xl gap-20">
+        <div className="flex flex-row  justify-between">
+          <h2 className="text-xl">Welcome, <b>{user.username}</b></h2>
+          <div>
+            <Link to="/create">
+              <h4>Create group</h4>
+            </Link>
+          </div>
+        </div>
+        <div className="flex flex-col gap-10">
+          <h3>Your Groups:</h3>
+          <ul>
+            {Object.entries(user.groups).map(([roomId, roomName]) => (
+              <li key={roomId}>
+                <button onClick={() => handleJoin(roomId)}>
+                  Join {roomName} ({roomId})
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

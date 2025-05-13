@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import HomePage from "./components/HomePage";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import GroupList from "./components/GroupList";
@@ -13,7 +14,9 @@ import "./App.css"
 function AppWrapper() {
   const [user, setUser] = useState(null);
   const [currentRoom, setCurrentRoom] = useState("");
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -38,13 +41,20 @@ function AppWrapper() {
     fetchUser()
   }, [])
 
+  useEffect(() => {
+    setLoading(true);
+    const timeout = setTimeout(() => setLoading(false), 500); // simulate loading delay
+    return () => clearTimeout(timeout);
+  }, [location]);
+
   return (
     <Routes>
-      <Route path="/" element={<Register navigate={navigate} />} />
-      <Route path="/login" element={<Login setUser={setUser} navigate={navigate} />} />
-      <Route path="/groups" element={<GroupList user={user} setCurrentRoom={setCurrentRoom} />} />
-      <Route path="/chat" element={<ChatBox socket={socket} username={user?.username} room={currentRoom} />} />
-      <Route path="/create" element = {<CreateGrp user={user} />} />
+      <Route path="/" element={<HomePage navigate={navigate} />} />
+      <Route path="/register" element={<Register navigate={navigate} loading={loading} />} />
+      <Route path="/login" element={<Login setUser={setUser} navigate={navigate} loading={loading}/>} />
+      <Route path="/groups" element={<GroupList user={user} setCurrentRoom={setCurrentRoom} loading={loading} />} />
+      <Route path="/chat" element={<ChatBox socket={socket} username={user?.username} room={currentRoom} loading={loading} />} />
+      <Route path="/create" element = {<CreateGrp user={user} loading={loading} />} />
     </Routes>
   );
 }
