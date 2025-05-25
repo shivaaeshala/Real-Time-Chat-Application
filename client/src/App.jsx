@@ -24,7 +24,8 @@ function AppWrapper() {
       if (!token) return
 
       try{
-        const res = await axios.get("http://localhost:5000/api/auth/me", {
+        // const res = await axios.get("http://localhost:5000/api/auth/me", {
+        const res = await axios.get("https://real-time-chat-application-production.up.railway.app/", {
           headers: {Authorization: `Bearer ${token}`}
         })
 
