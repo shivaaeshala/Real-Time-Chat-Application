@@ -9,7 +9,7 @@ function Login({ setUser, navigate, loading }) {
 
     const login = async () => {
         try {
-            const res = await axios.post("http://localhost:5000/api/auth/login", { username, password })
+            const res = await axios.post("https://invigorating-renewal-production.up.railway.app/api/auth/login", { username, password })
             localStorage.setItem("token", res.data.token)
             setUser(res.data.user)
             // alert(res.data.username)
