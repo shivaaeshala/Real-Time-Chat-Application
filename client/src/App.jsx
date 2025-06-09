@@ -24,8 +24,7 @@ function AppWrapper() {
       if (!token) return
 
       try{
-        // const res = await axios.get("http://localhost:5000/api/auth/me", {
-        const res = await axios.get("https://invigorating-renewal-production.up.railway.app/api/auth/me", {
+        const res = await axios.get("http://localhost:5000/api/auth/me", {
           headers: {Authorization: `Bearer ${token}`}
         })
 
