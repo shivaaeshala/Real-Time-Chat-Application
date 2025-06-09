@@ -33,7 +33,7 @@ function AppWrapper() {
 
       }
       catch(error){
-        console.error("Invalid token, logging out")
+        console.error("Invalid token, logging out", error)
         localStorage.removeItem("token")
       }
     }
