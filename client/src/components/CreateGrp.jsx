@@ -17,7 +17,7 @@ function CreateGrp({ user }) {
 
   const updateGrp = async () => {
     try {
-      await axios.post("https://invigorating-renewal-production.up.railway.app/api/auth/add-group", { username: user.username, room: room, roomname: roomname })
+      await axios.post("https://real-time-chat-application-v8j4.onrender.com/api/auth/add-group", { username: user.username, room: room, roomname: roomname })
     }
     catch (error) {
       alert(error.response.data.msg)
@@ -33,7 +33,7 @@ function CreateGrp({ user }) {
   const joinRoom = async () => {
 
     try {
-      await axios.post("https://invigorating-renewal-production.up.railway.app/api/auth/checkRoom", { room: room })
+      await axios.post("https://real-time-chat-application-v8j4.onrender.com/api/auth/checkRoom", { room: room })
       // setUsername(user.username)
       if (room !== "") {
         socket.emit("join_room", room);
@@ -61,7 +61,7 @@ function CreateGrp({ user }) {
 
   const addRoom = async () => {
     try {
-      await axios.post("https://invigorating-renewal-production.up.railway.app/api/auth/addRoom", { room: room })
+      await axios.post("https://real-time-chat-application-v8j4.onrender.com/api/auth/addRoom", { room: room })
       // setCreate(1)
     }
     catch (error) {

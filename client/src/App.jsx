@@ -24,7 +24,7 @@ function AppWrapper() {
       if (!token) return
 
       try{
-        const res = await axios.get("http://localhost:5000/api/auth/me", {
+        const res = await axios.get("https://real-time-chat-application-v8j4.onrender.com/api/auth/me", {
           headers: {Authorization: `Bearer ${token}`}
         })
 
@@ -33,7 +33,7 @@ function AppWrapper() {
 
       }
       catch(error){
-        console.error("Invalid token, logging out")
+        console.error("Invalid token, logging out", error)
         localStorage.removeItem("token")
       }
     }

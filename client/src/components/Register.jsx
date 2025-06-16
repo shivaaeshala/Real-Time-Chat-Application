@@ -9,7 +9,7 @@ function Register({ navigate, loading }) {
 
     const register = async () => {
         try {
-            await axios.post("https://invigorating-renewal-production.up.railway.app/api/auth/register", { username, password })
+            await axios.post("https://real-time-chat-application-v8j4.onrender.com/api/auth/register", { username, password })
             alert("Registered successfully. Please login")
             navigate("/login")
         }
