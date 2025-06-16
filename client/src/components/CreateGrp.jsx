@@ -17,7 +17,7 @@ function CreateGrp({ user }) {
 
   const updateGrp = async () => {
     try {
-      await axios.post("http://localhost:5000/api/auth/add-group", { username: user.username, room: room, roomname: roomname })
+      await axios.post("https://real-time-chat-application-v8j4.onrender.com/api/auth/add-group", { username: user.username, room: room, roomname: roomname })
     }
     catch (error) {
       alert(error.response.data.msg)
