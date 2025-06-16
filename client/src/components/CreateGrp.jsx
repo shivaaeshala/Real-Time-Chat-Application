@@ -33,7 +33,7 @@ function CreateGrp({ user }) {
   const joinRoom = async () => {
 
     try {
-      await axios.post("http://localhost:5000/api/auth/checkRoom", { room: room })
+      await axios.post("https://real-time-chat-application-v8j4.onrender.com/api/auth/checkRoom", { room: room })
       // setUsername(user.username)
       if (room !== "") {
         socket.emit("join_room", room);
@@ -61,7 +61,7 @@ function CreateGrp({ user }) {
 
   const addRoom = async () => {
     try {
-      await axios.post("http://localhost:5000/api/auth/addRoom", { room: room })
+      await axios.post("https://real-time-chat-application-v8j4.onrender.com/api/auth/addRoom", { room: room })
       // setCreate(1)
     }
     catch (error) {
