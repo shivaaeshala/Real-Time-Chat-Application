@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import Loader from "../loader/Loader";
 
-function ChatBox({ socket, username, room }) {
+function ChatBox({ socket, username, room, loading }) {
   const [message, setMessage] = useState("");
   const [chat, setChat] = useState([]);
   const [isTyping, setIsTyping] = useState(false);
@@ -45,6 +46,8 @@ function ChatBox({ socket, username, room }) {
 
   return (
     <div>
+      {loading ? <Loader/> :
+      <>
       <div className="chat">
         {chat.map((msg, i) => (
           <div key={i}>
@@ -60,6 +63,8 @@ function ChatBox({ socket, username, room }) {
         placeholder="Message..."
       />
       <button onClick={sendMessage}>Send</button>
+      </>
+      }
     </div>
   );
 }

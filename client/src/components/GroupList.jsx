@@ -2,8 +2,9 @@ import React from "react"
 import { useNavigate, Link } from "react-router-dom"
 import { socket } from "../socket"
 import Header from "./Header"
+import Loader from "../loader/Loader"
 
-function GroupList({ user, setCurrentRoom }) {
+function GroupList({ user, setCurrentRoom, loading }) {
   const navigate = useNavigate()
 
   const handleJoin = (roomId) => {
@@ -16,6 +17,8 @@ function GroupList({ user, setCurrentRoom }) {
 
   return (
     <>
+      {loading ? <Loader /> :
+      <>
       <Header />
       <div className="groups flex flex-col justify-start max-w-2xl gap-20">
         <div className="flex flex-row  justify-between">
@@ -39,6 +42,8 @@ function GroupList({ user, setCurrentRoom }) {
           </ul>
         </div>
       </div>
+      </>
+      }
     </>
   )
 }

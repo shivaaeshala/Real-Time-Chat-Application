@@ -3,10 +3,11 @@ import { socket } from "../socket";
 import ChatBox from "./ChatBox";
 import axios from "axios"
 import Header from "./Header";
+import Loader from "../loader/Loader";
 // import {addRooms, checkRooms} from "../../../server/routes/addRooms.js"
 // import User from "../../../server/models/Users"
 
-function CreateGrp({ user }) {
+function CreateGrp({ user, loading }) {
   // const [username, setUsername] = useState("");
   const [room, setRoom] = useState("");
   const [joined, setJoined] = useState(false);
@@ -88,6 +89,8 @@ function CreateGrp({ user }) {
 
   return (
     <>
+      {loading ? <Loader /> :
+      <>
       <Header />
       <div>
         {create === 1 ? (
@@ -123,6 +126,8 @@ function CreateGrp({ user }) {
           <ChatBox socket={socket} username={user.username} room={room} />
         )}
       </div>
+      </>
+      }
     </>
   );
 }
