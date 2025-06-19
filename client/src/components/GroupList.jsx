@@ -17,7 +17,7 @@ function GroupList({ user, setCurrentRoom, loading }) {
 
   return (
     <>
-      {loading ? <Loader /> :
+      {loading ? <Loader className="loader" /> :
       <>
       <Header />
       <div className="groups flex flex-col justify-start max-w-2xl gap-20">

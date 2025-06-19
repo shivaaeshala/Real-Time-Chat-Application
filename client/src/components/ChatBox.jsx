@@ -46,7 +46,7 @@ function ChatBox({ socket, username, room, loading }) {
 
   return (
     <div>
-      {loading ? <Loader/> :
+      {loading ? <Loader className="loader" /> :
       <>
       <div className="chat">
         {chat.map((msg, i) => (

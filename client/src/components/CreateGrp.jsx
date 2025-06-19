@@ -89,7 +89,7 @@ function CreateGrp({ user, loading }) {
 
   return (
     <>
-      {loading ? <Loader /> :
+      {loading ? <Loader className="loader" /> :
       <>
       <Header />
       <div>
